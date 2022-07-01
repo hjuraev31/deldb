@@ -52,6 +52,7 @@
                      for(let i = 0;i<data.length;i++) {
                         deleteDB(data[i]);
                     }
+                    alert('Successfully deleted!');
                 }else {
                     alert('Database is empty');
                 }
@@ -59,8 +60,6 @@
             }catch(e) {
                 alert(e);
                 console.log(e);
-            }finally {
-               alert('Successfully deleted!');
             }
         }
         const delBtn = document.getElementById('clearHeroku');
