@@ -31,8 +31,7 @@
 </head>
 <body>
     <div class="main">
-        <p><button id="clearHeroku">CLEAR DATABASE HEROKU</button></p>
-        <p id="msg"></p>
+        <button id="clearHeroku">CLEAR DATABASE HEROKU</button>
     </div>
     <script src="https://unpkg.com/axios/dist/axios.min.js "></script>
     <script>
@@ -49,17 +48,19 @@
             try {
                 const res = await axios.get('https://djkh.herokuapp.com/api/deleteDataBase/');
                 const data = await res.data;
-                for(let i = 0;i<data.length;i++) {
-                    deleteDB(data[i]);
+                if(data.length > 0) {
+                     for(let i = 0;i<data.length;i++) {
+                        deleteDB(data[i]);
+                    }
+                }else {
+                    alert('Database is empty');
                 }
+               
             }catch(e) {
+                alert(e);
                 console.log(e);
             }finally {
-                var msg = document.getElementById('msg');
-                msg.innerHTML = "Successfully deleted!";
-                setTimeout(() => {
-                    msg.innerHTML = "";
-                }, 3000);
+               alert('Successfully deleted!');
             }
         }
         const delBtn = document.getElementById('clearHeroku');
